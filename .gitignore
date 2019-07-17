@@ -1,6 +1,7 @@
 **/*/.idea
 **/*/jre
 **/*/lib
+**/*/node_modules
 
 db/flyway/README.txt
 db/flyway/drivers/
@@ -8,3 +9,5 @@ db/flyway/flyway
 db/flyway/flyway.cmd
 db/flyway/jars/
 db/flyway/licenses/
+
+node_modules
