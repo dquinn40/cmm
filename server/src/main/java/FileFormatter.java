@@ -1,26 +1,46 @@
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.charset.Charset;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileFormatter {
-    public static void readUsingScanner(String filename) throws FileNotFoundException, URISyntaxException {
+    public static List<String> wrapText(List<String> lines) throws Exception {
+        List<String> wrappedLines = new ArrayList<>();
 
-        File testFile = new File(FileFormatter.class.getResource(filename).toURI());
-        Scanner scanner = new Scanner(testFile);
-        scanner.useDelimiter(System.lineSeparator());
-        while(scanner.hasNext()) {
-            System.out.println(String.format("line: %s", scanner.next()));
+        String overrun = "";
+        for(int idx = 0; idx < lines.size(); idx++) {
+            String trimmedLine = lines.get(idx).trim();
+            overrun = overrun.trim();
+            if(trimmedLine.length() == 0 && overrun.length() > 0) {
+                while(overrun.length() > 0) {
+                    if(overrun.length() > 80) {
+                        int spaceIdx = overrun.substring(0, 80).lastIndexOf(" ");
+                        wrappedLines.add(overrun.substring(0, spaceIdx).trim());
+                        overrun = overrun.substring(spaceIdx, overrun.length());
+                    } else {
+                        wrappedLines.add(overrun.trim());
+                        if(idx != lines.size() - 1) wrappedLines.add("");
+                        overrun = "";
+                    }
+                }
+            } else if (trimmedLine.length() == 0) {
+                wrappedLines.add(trimmedLine);
+            } else {
+                if(overrun.length() > 0) {
+                    trimmedLine = overrun.trim() + " " + trimmedLine;
+                }
+                if(trimmedLine.length() < 81) {
+                    wrappedLines.add(trimmedLine);
+                    overrun = "";
+                } else {
+                    int lastSpaceIdx = getLastSpaceInString(trimmedLine.substring(0, 80));
+                    wrappedLines.add(trimmedLine.substring(0, lastSpaceIdx));
+                    overrun = trimmedLine.substring(lastSpaceIdx, trimmedLine.length());
+                }
+            }
         }
+        return wrappedLines;
     }
 
-    public static void readUsingFileUtils(String filename) throws IOException, URISyntaxException {
-        File testFile = new File(FileFormatter.class.getResource(filename).toURI());
-        String contents = FileUtils.readFileToString(testFile, Charset.defaultCharset());
-        System.out.println(String.format("Read file to string: %s", contents));
+    private static int getLastSpaceInString(String str) throws Exception {
+        return str.lastIndexOf(" ");
     }
 }
