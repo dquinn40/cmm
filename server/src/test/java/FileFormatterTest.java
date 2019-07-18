@@ -24,6 +24,10 @@ public class FileFormatterTest {
         }
     }
 
+    /*
+        This test cast would be used to refactor the performance of the algorithm. Its not written very efficiently, yet.
+            Would just need to know what the performance requirement is first - if there was one.
+     */
     @Test(timeout = 50L)
     public void algorithmMeetSla() throws Exception {
         FileFormatter.wrapText(readFile("article.txt"));
