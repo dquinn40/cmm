@@ -24,7 +24,7 @@ for (var idx = 0; idx < randomFriends.length; idx++) {
     friendSpanElem.setAttribute("class", "fade")
     friendLiElem.appendChild(friendSpanElem);
 
-    var friendName = document.createTextNode(friend.name);
+    var friendName = document.createTextNode("Hello, " + friend.name);
     friendSpanElem.append(friendName);
 
     friendUl.appendChild(friendLiElem);
