@@ -1,0 +1,17 @@
+.cmm-header {
+    text-align: center;
+}
+
+.cmm-header-text {
+    background: black;
+    color: white;
+}
+
+.fade
+{
+    opacity:0.5;
+}
+.fade:hover
+{
+    opacity:1;
+}
