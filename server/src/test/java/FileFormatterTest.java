@@ -24,6 +24,11 @@ public class FileFormatterTest {
         }
     }
 
+    @Test(timeout = 50L)
+    public void algorithmMeetSla() throws Exception {
+        FileFormatter.wrapText(readFile("article.txt"));
+    }
+
     private List<String> readFile(String filename) throws Exception {
         return FileUtils.readLines(
                 new File(FileFormatterTest.class.getResource(filename).toURI()), Charset.defaultCharset());
