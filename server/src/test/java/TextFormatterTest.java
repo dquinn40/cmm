@@ -1,3 +1,4 @@
+import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -5,6 +6,7 @@ import org.junit.Test;
 import java.io.File;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class TextFormatterTest {
 
@@ -42,6 +44,14 @@ public class TextFormatterTest {
             Assert.assertTrue(line.length() < 81);
             System.out.println(line);
         }
+    }
+
+    @Test
+    public void regexLineFeedTest() throws Exception {
+        String strWithLineFeed = "some text\n and some more text.";
+        Assert.assertTrue(strWithLineFeed.split("\n").length > 1);
+        String fileContents = readFileToString("article.txt");
+        Assert.assertEquals(13, fileContents.split("^\\n").length);
     }
 
     @Test

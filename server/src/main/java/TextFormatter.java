@@ -18,14 +18,14 @@ public class TextFormatter {
 
     public static List<String> condenseAndWrapText(String content) throws Exception {
         List<String> paragraphs = tokenizeParagraphs(content);
-        List<String> paragraphWithoutLineFeeds = new ArrayList<>();
+        List<String> singleLineParagraphs = new ArrayList<>();
         for(String paragraph : paragraphs) {
-            paragraphWithoutLineFeeds.add(removeLineFeeds(paragraph));
+            singleLineParagraphs.add(removeLineFeeds(paragraph));
         }
 
         List<String> wrappedParagraphs = new ArrayList<>();
-        for(String flattenedParagraph : paragraphWithoutLineFeeds) {
-            wrappedParagraphs.addAll(wrapLine(flattenedParagraph, 80));
+        for(String singleLineParagraph : singleLineParagraphs) {
+            wrappedParagraphs.addAll(wrapLine(singleLineParagraph, 80));
             wrappedParagraphs.add("\n");
         }
 
