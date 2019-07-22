@@ -3,16 +3,16 @@ import java.util.List;
 public class CmmApplication {
     public static void main(String[] args) {
         try {
-            wrapLines();
+            showWrapLinesImplementation();
             System.out.println("\n\n\n#############################################\n\n\n");
-            wrapAndCondenseParagraphs();
+            shapWrapAndCondenseParagraphsImplementation();
         } catch (Exception e) {
             System.out.println("Unable to process file");
             e.printStackTrace();
         }
     }
 
-    private static void wrapLines() throws Exception {
+    private static void showWrapLinesImplementation() throws Exception {
         List<String> lines = FileReader.readFile("article.txt");
         List<String> wrappedLines = TextFormatter.wrapText(lines);
 
@@ -21,7 +21,7 @@ public class CmmApplication {
         }
     }
 
-    private static void wrapAndCondenseParagraphs() throws Exception {
+    private static void shapWrapAndCondenseParagraphsImplementation() throws Exception {
         String content = FileReader.readFileToString("article.txt");
         List<String> wrappedLines = TextFormatter.condenseAndWrapText(content);
 
