@@ -6,14 +6,14 @@ import java.util.List;
 public class TextFormatterTest {
 
     @Test
-    public void multipleParagraphConvertedToSeperateString() {
+    public void multipleParagraphsConvertedToSeperateStrings() {
         String text = "Here is the\nfirst paragraph.\n\nHere\n is the second\n paragraph\n\nAnd here is the third";
         List<String> paragraphs = TextFormatter.tokenizeParagraphs(text);
         Assert.assertEquals(3, paragraphs.size());
     }
 
     @Test
-    public void lineFeedsConvertedSpaces() {
+    public void lineFeedsConvertedToSpaces() {
         String paragraph = "Here is a really\nlong paragraph.\nWith multiple lines\nthat need to be converted";
         String results = TextFormatter.removeLineFeeds(paragraph);
         String expectedResults = "Here is a really long paragraph. With multiple lines that need to be converted";
@@ -21,7 +21,7 @@ public class TextFormatterTest {
     }
 
     @Test
-    public void endOfLineFeedJustRemoved() {
+    public void endOfLineFeedRemoved() {
         String paragraph = "Here is a really\nlong paragraph.\nWith multiple lines\nthat need to be converted\n";
         String results = TextFormatter.removeLineFeeds(paragraph);
         String expectedResults = "Here is a really long paragraph. With multiple lines that need to be converted";

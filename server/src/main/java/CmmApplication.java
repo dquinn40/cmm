@@ -5,7 +5,7 @@ public class CmmApplication {
         try {
             showWrapLinesImplementation();
             System.out.println("\n\n\n#############################################\n\n\n");
-            shapWrapAndCondenseParagraphsImplementation();
+            showWrapAndCondenseParagraphsImplementation();
         } catch (Exception e) {
             System.out.println("Unable to process file");
             e.printStackTrace();
@@ -21,7 +21,7 @@ public class CmmApplication {
         }
     }
 
-    private static void shapWrapAndCondenseParagraphsImplementation() throws Exception {
+    private static void showWrapAndCondenseParagraphsImplementation() throws Exception {
         String content = FileReader.readFileToString("article.txt");
         List<String> wrappedLines = TextFormatter.condenseAndWrapText(content);
 
